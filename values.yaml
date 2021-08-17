@@ -1,0 +1,355 @@
+# Default values for drone.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: docker.io/drone/drone-runner-kube
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+config:
+  # DRONE_ANNOTATIONS_DEFAULT
+  # Optional string map. Provides a set of default annotations used when
+  # creating the pipeline pod. The default annotation values are appended to the
+  # annotations defined in the yaml.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-annotations-default/
+  # DRONE_ANNOTATIONS_DEFAULT: "keyA:valueA,keyB:valueB"
+
+  # DRONE_DEBUG
+  # Optional boolean value. Enables debug level logging.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-debug/
+  # DRONE_DEBUG: "true"
+
+  # DRONE_DOCKER_CONFIG
+  # Optional string value. Provides the path to a Docker config.json file used
+  # to source registry credentials from third party system.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-docker-config/
+  # DRONE_DOCKER_CONFIG: ""
+
+  # DRONE_HTTP_BIND
+  # Optional string value configures the http listener port. The default value
+  # is :3000. Overriding this value is not recommended.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-http-bind/
+  # DRONE_HTTP_BIND: ""
+
+  # DRONE_HTTP_HOST
+  # Optional string value that configures the http listener hostname. The
+  # default value is an empty string. Setting this value is not recommended.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-http-host/
+  # DRONE_HTTP_HOST: ""
+
+  # DRONE_HTTP_PROTO
+  # Optional string value configures the http listener protocol. The default
+  # value is http. Overriding this value is not recommended.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-http-proto/
+  # DRONE_HTTP_PROTO: ""
+
+  # DRONE_IMAGE_CLONE
+  # Optional string value overrides the default plugin used to clone the
+  # repository. The default value is drone/git
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-image-clone/
+  # DRONE_IMAGE_CLONE: ""
+
+  # DRONE_IMAGE_PLACEHOLDER
+  # Optional string value overrides the placeholder image used when creating
+  # Pods. The default value is drone/placeholder.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-image-placeholder/
+  # DRONE_IMAGE_PLACEHOLDER: ""
+
+  # DRONE_LABELS_DEFAULT
+  # Optional string map. Provides a set of default labels used when creating the
+  # pipeline pod. The default annotation values are appended to the labels
+  # defined in the yaml.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-labels-default/
+  # DRONE_LABELS_DEFAULT: "keyA:valueA,keyB:valueB"
+
+  # DRONE_LIMIT_EVENTS
+  # Optional comma-separated string value. Provides a white list of build events
+  # that can be processed by this runner. This provides an extra layer of
+  # security to limit the kind of workloads this runner can process.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-limit-events/
+  # DRONE_LIMIT_EVENTS: ""
+
+  # DRONE_LIMIT_REPOS
+  # Optional comma-separated string value. Configures the runner to only process
+  # matching repositories. This provides an extra layer of security and can stop
+  # untrusted repositories from executing pipelines with this runner.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-limit-repos/
+  # DRONE_LIMIT_REPOS: ""
+
+  # DRONE_LIMIT_TRUST
+  # Optional boolean value. Configures the runner to only process trusted
+  # repositories. This provides an extra layer of security and can stop
+  # untrusted repositories from executing pipelines with this runner.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-limit-trusted/
+  # DRONE_LIMIT_TRUST: ""
+
+  # DRONE_NAMESPACE_DEFAULT
+  # Optional string value provides the default namespace used to create pipeline
+  # resources. The default namespace is used if the no namespace is configured
+  # in the yaml.
+  #
+  # DRONE_NAMESPACE_DEFAULT=default
+  #
+  # You can optionally configure the runner to create a namespace for each
+  # pipeline execution which gets deleted when the pipeline completes. This can
+  # be configured using this exact value:
+  #
+  # DRONE_NAMESPACE_DEFAULT=drone-
+  #
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-namespace-default/
+  # DRONE_NAMESPACE_DEFAULT: ""
+
+  # DRONE_NAMESPACE_RULES
+  # Optional string map. Defines linting rules to prevent an organization or
+  # repository from using a restricted namespace.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-namespace-rules/
+  # DRONE_NAMESPACE_RULES: ""
+
+  # DRONE_NAMESPACE_RULES_FILE
+  # Optional string value. Provides the path to a file that defines namespace
+  # usage rules. These rules prevent an organization or repository from using a
+  # restricted namespace.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-namespace-rules-file/
+  # DRONE_NAMESPACE_RULES_FILE: ""
+
+  # DRONE_NODE_SELECTOR_DEFAULT
+  # Optional string map. Provides a set of default node_selector values used
+  # when creating the pipeline pod. The default node_selector values are used if
+  # node_selector is undefined in the yaml.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-node-selector-default/
+  # DRONE_NODE_SELECTOR_DEFAULT: ""
+
+  # DRONE_POLICY_FILE
+  # Optional string value. Provides the path to the policy file that should be
+  # loaded on startup. Note that the policy file needs to be mounted into the
+  # runner container.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-policy-file/
+  # DRONE_POLICY_FILE: ""
+
+  # DRONE_REGISTRY_PLUGIN_ENDPOINT
+  # Optional string value. Provides the endpoint used to make http requests to
+  # an external registry plugin. The external registry plugin can be used to
+  # source registry credentials from third party system.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-registry-plugin-endpoint/
+  # DRONE_REGISTRY_PLUGIN_ENDPOINT: ""
+
+  # DRONE_REGISTRY_PLUGIN_SKIP_VERIFY
+  # Optional boolean value. Disable SSL verification when making http requests
+  # to the registry plugin endpoint. This is unsafe and is not recommended.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-registry-plugin-skip-verify/
+  # DRONE_REGISTRY_PLUGIN_SKIP_VERIFY: ""
+
+  # DRONE_REGISTRY_PLUGIN_TOKEN
+  # Optional string value. Provides the token used to authenticate http requests
+  # to the registry plugin endpoint.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-registry-plugin-token/
+  # DRONE_REGISTRY_PLUGIN_TOKEN: ""
+
+  # DRONE_RESOURCE_LIMIT_CPU
+  # Optional integer, sets the default millicpu resource limits for all pipeline
+  # containers. This value maps to the spec.containers[].resources.limits.cpu
+  # field.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-resource-limit-cpu/
+  # DRONE_RESOURCE_LIMIT_CPU: ""
+
+  # DRONE_RESOURCE_LIMIT_MEMORY
+  # Optional integer, sets the default memory limits for all pipeline
+  # containers. This value maps to the spec.containers[].resources.limits.memory
+  # field.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-resource-limit-memory/
+  # DRONE_RESOURCE_LIMIT_MEMORY: ""
+
+  # DRONE_RESOURCE_REQUEST_CPU
+  # Optional integer, sets the default millicpu resource request for all
+  # pipeline steps. This value maps to the
+  # spec.containers[].resources.requests.cpu field.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-resource-request-cpu/
+  # DRONE_RESOURCE_REQUEST_CPU: ""
+
+  # DRONE_RESOURCE_REQUEST_MEMORY
+  # Optional integer, sets the default memory resource request for all pipeline
+  # steps. This value maps to the spec.containers[].resources.requests.memory
+  # field.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-resource-request-memory/
+  # DRONE_RESOURCE_REQUEST_MEMORY: ""
+
+  # DRONE_RPC_DUMP_HTTP
+  # Optional boolean value. Enables dumping the http request and response to the
+  # logs for debugging purposes. This should only be enabled while debugging
+  # connectivity issues between the runner and server.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-rpc-dump-http/
+  # DRONE_RPC_DUMP_HTTP: ""
+
+  # DRONE_RPC_DUMP_HTTP_BODY
+  # Optional boolean value. Enables dumping the http request and response body
+  # to the logs for debugging purposes. This should only be enabled while
+  # debugging connectivity issues between the runner and server.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-rpc-dump-http-body/
+  # DRONE_RPC_DUMP_HTTP_BODY: ""
+
+  # DRONE_RPC_HOST
+  # Required string values. Defines the hostname (and optional port) used to
+  # connect to the Drone server.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-rpc-host/
+  # DRONE_RPC_HOST: ""
+
+  # DRONE_RPC_PROTO
+  # Required string value. Defines the protocol used to connect to the Drone
+  # server. The value must be either http or https.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-rpc-proto/
+  # DRONE_RPC_PROTO: ""
+
+  # DRONE_RPC_SECRET
+  # Required string value. Provides the shared secret used by the Drone server
+  # to authenticate http requests.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-rpc-secret/
+  # DRONE_RPC_SECRET: ""
+
+  # DRONE_RPC_SKIP_VERIFY
+  # Optional boolean value. Disable SSL verification when making http requests
+  # to the Drone server. This is unsafe and is not recommended.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-rpc-skip-verify/
+  # DRONE_RPC_SKIP_VERIFY: ""
+
+  # DRONE_RUNNER_CAPACITY
+  # Optional number value. Limits the number of concurrent pipelines that a
+  # runner can execute. This does not limit the number of concurrent pipelines
+  # that can execute on a single node.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-runner-capacity/
+  # DRONE_RUNNER_CAPACITY: ""
+
+  # DRONE_RUNNER_DEVICES
+  # Optional comma separated list. Provides a list of devices that are mounted
+  # into every pipeline step.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-runner-devices/
+  # DRONE_RUNNER_DEVICES: ""
+
+  # DRONE_RUNNER_ENV_FILE
+  # Optional string value. Provides the path to an environment variable file
+  # used to define global environment variables injected into all pipeline
+  # steps.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-runner-env-file/
+  # DRONE_RUNNER_ENV_FILE: ""
+
+  # DRONE_RUNNER_ENVIRON
+  # Optional string map. Provides a set of global environment variables that are
+  # injected into every pipeline step.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-runner-environ/
+  # DRONE_RUNNER_ENVIRON: ""
+
+  # DRONE_RUNNER_MAX_PROCS
+  # Optional number value. Limits the number of concurrent steps that a runner
+  # can execute for a single pipeline. This is disabled by default. This can be
+  # useful if you need to throttle the maximum number of parallel steps to
+  # prevent resource exhaustion.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-runner-max-procs/
+  # DRONE_RUNNER_MAX_PROCS: ""
+
+  # DRONE_RUNNER_NAME
+  # Optional string value. Sets the name of the runner. The runner name is
+  # stored in the server and can be used to trace a build back to a specific
+  # runner.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-runner-name/
+  # DRONE_RUNNER_NAME: ""
+
+  # DRONE_RUNNER_PRIVILEGED_IMAGES
+  # Optional comma separated list. Provides a list of Docker images that are
+  # started as privileged containers by default.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-runner-privileged-images/
+  # DRONE_RUNNER_PRIVILEGED_IMAGES: ""
+
+  # DRONE_SECRET_PLUGIN_ENDPOINT
+  # Optional string value. Provides the endpoint used to make http requests to
+  # an external secret plugin. The external secret plugin (e.g. vault) can be
+  # used to source secrets from third party system.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-secret-plugin-endpoint/
+  # DRONE_SECRET_PLUGIN_ENDPOINT: ""
+
+  # DRONE_SECRET_PLUGIN_SKIP_VERIFY
+  # Optional boolean value. Disable SSL verification when making http requests
+  # to the plugin endpoint. This is unsafe and is not recommended.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-secret-plugin-skip-verify/
+  # DRONE_SECRET_PLUGIN_SKIP_VERIFY: ""
+
+  # DRONE_SECRET_PLUGIN_TOKEN
+  # Optional string value. Provides the secret token used to authenticate http
+  # requests to the plugin endpoint.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-secret-plugin-token/
+  # DRONE_SECRET_PLUGIN_TOKEN: ""
+
+  # DRONE_SERVICE_ACCOUNT_DEFAULT
+  # Optional string value provides the default service account used when
+  # creating Pod. The default service account is used if no service account is
+  # configured in the yaml.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-service-account-default/
+  # DRONE_SERVICE_ACCOUNT_DEFAULT: ""
+
+  # DRONE_TRACE
+  # Optional boolean value. Enables trace level logging.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-trace/
+  # DRONE_TRACE: ""
+
+  # DRONE_UI_DISABLED
+  # Optional boolean value. Disables the runner’s user interface.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-ui-disable/
+  # DRONE_UI_DISABLE: ""
+
+  # DRONE_UI_PASSWORD
+  # Optional string value. Sets the basic authentication password used to
+  # authenticate and access the web dashboard. If no password is provided the
+  # web dashboard is disabled.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-ui-password/
+  # DRONE_UI_PASSWORD: ""
+
+  # DRONE_UI_REALM
+  # Optional string value. Sets the basic authentication realm used to
+  # authenticate and access the web dashboard.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-ui-realm/
+  # DRONE_UI_REALM: ""
+
+  # DRONE_UI_USERNAME
+  # Optional string value. Sets the basic authentication username used to
+  # authenticate and access the web dashboard.
+  # https://docs.drone.io/runner/kubernetes/configuration/reference/drone-ui-username/
+  # DRONE_UI_USERNAME: ""
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
