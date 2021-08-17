@@ -1,6 +1,6 @@
 # drone-charts
 
-[![Build Status](https://drone.cryptic.systems/api/badges/volker.raschek/drone-runner-charts/status.svg)](https://drone.cryptic.systems/volker.raschek/drone-charts)
+[![Build Status](https://drone.cryptic.systems/api/badges/volker.raschek/drone-runner-charts/status.svg)](https://drone.cryptic.systems/volker.raschek/drone-runner-charts)
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/volker-raschek)](https://artifacthub.io/packages/search?repo=volker-raschek)
 
 This is an inofficial helm chart for
