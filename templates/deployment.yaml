@@ -35,16 +35,31 @@ spec:
           protocol: TCP
         resources:
           {{- toYaml .Values.resources | nindent 12 }}
-      {{- with .Values.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+        {{- if and (hasKey .Values.envFile "content") (hasKey .Values.config "DRONE_RUNNER_ENV_FILE") }}
+        volumeMounts:
+        - name: env-file
+          mountPath: {{ dir .Values.config.DRONE_RUNNER_ENV_FILE }}
+          readOnly: true
+        {{- end}}
       {{- with .Values.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "droneRunner.fullname" . }}
       {{- with .Values.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "droneRunner.fullname" . }}
+      {{- if and (hasKey .Values.envFile "content") (hasKey .Values.config "DRONE_RUNNER_ENV_FILE") }}
+      volumes:
+      - name: env-file
+        configMap:
+          name: {{ include "droneRunner.fullname" . }}
+          items:
+          - key: {{ base .Values.config.DRONE_RUNNER_ENV_FILE }}
+            path: {{ base .Values.config.DRONE_RUNNER_ENV_FILE }}
+      {{- end}}

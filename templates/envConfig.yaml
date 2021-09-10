@@ -1,0 +1,11 @@
+{{- if and (hasKey .Values.envFile "content") (hasKey .Values.config "DRONE_RUNNER_ENV_FILE") }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    {{- include "droneRunner.labels" . | nindent 4 }}
+  name: {{ include "droneRunner.fullname" . }}
+data:
+  {{ base .Values.config.DRONE_RUNNER_ENV_FILE }}: |
+    {{ .Values.envFile.content }}
+{{- end }}
