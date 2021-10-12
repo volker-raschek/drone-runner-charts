@@ -21,6 +21,8 @@
 .idea/
 *.tmproj
 .vscode/
+# editorconfig
+.editorconfig
 # drone
 .drone.yml
 # markdownlint
