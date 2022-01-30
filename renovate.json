@@ -3,6 +3,23 @@
   "automergeStrategy": "merge-commit",
   "automergeType": "pr",
   "assignees": [ "volker.raschek" ],
+  "labels": [ "renovate" ],
+  "packageRules": [
+    {
+      "addLabels": [ "renovate/drone-runner", "renovate/automerge" ],
+      "automerge": true,
+      "matchManagers": "droneci",
+      "matchUpdateTypes": [ "minor", "patch"]
+    },
+    {
+      "addLabels": [ "renovate/drone-runner", "renovate/automerge" ],
+      "automerge": false,
+      "matchPackageNames": [ "drone-runner" ],
+      "matchManagers": [ "regex" ]
+    }
+  ],
+  "rebaseLabel": "renovate/rebase",
+  "rebaseWhen": "behind-base-branch",
   "regexManagers": [
     {
       "description": "Update container image reference",
@@ -12,8 +29,9 @@
       "matchStrings": [
         "appVersion: \"(?<currentValue>.*?)\"\\s+"
       ],
-      "depNameTemplate": "docker.io/drone/drone-runner-kube",
-      "datasourceTemplate": "docker"
+      "datasourceTemplate": "docker",
+      "depNameTemplate": "drone-runner",
+      "lookupNameTemplate": "docker.io/drone/drone-runner-kube"
     }
   ]
 }
