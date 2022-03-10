@@ -27,7 +27,7 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
-config:
+config: {}
   # DRONE_ANNOTATIONS_DEFAULT
   # Optional string map. Provides a set of default annotations used when
   # creating the pipeline pod. The default annotation values are appended to the
