@@ -49,6 +49,9 @@ spec:
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- if .Values.podPriorityClassName }}
+      priorityClassName: {{ .Values.podPriorityClassName }}
+      {{- end }}
       serviceAccountName: {{ include "droneRunner.fullname" . }}
       {{- with .Values.tolerations }}
       tolerations:
