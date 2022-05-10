@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "droneRunner.labels" . | nindent 4 }}
 spec:
-  replicas: {{- .Values.replicaCount | default 1 | quote }}
+  replicas: {{ .Values.replicaCount | default 1 | quote }}
   selector:
     matchLabels:
       {{- include "droneRunner.selectorLabels" . | nindent 6 }}
