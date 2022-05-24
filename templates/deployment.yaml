@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "droneRunner.labels" . | nindent 4 }}
 spec:
-  replicas: {{ .Values.replicaCount | default 1 | quote }}
+  replicas: {{ .Values.replicaCount | default 1 }}
   selector:
     matchLabels:
       {{- include "droneRunner.selectorLabels" . | nindent 6 }}
@@ -38,7 +38,7 @@ spec:
           {{- toYaml .Values.resources | nindent 12 }}
         {{- if and (hasKey .Values.envFile "content") (hasKey .Values.config "DRONE_RUNNER_ENV_FILE") }}
         volumeMounts:
-        - name: env-file
+        - name: custom-env-vars
           mountPath: {{ dir .Values.config.DRONE_RUNNER_ENV_FILE }}
           readOnly: true
         {{- end}}
@@ -60,10 +60,10 @@ spec:
       {{- end }}
       {{- if and (hasKey .Values.envFile "content") (hasKey .Values.config "DRONE_RUNNER_ENV_FILE") }}
       volumes:
-      - name: env-file
+      - name: custom-env-vars
         configMap:
           name: {{ include "droneRunner.fullname" . }}
           items:
-          - key: {{ base .Values.config.DRONE_RUNNER_ENV_FILE }}
+          - key: custom-env-vars
             path: {{ base .Values.config.DRONE_RUNNER_ENV_FILE }}
       {{- end}}

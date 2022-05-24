@@ -337,7 +337,7 @@ config: {}
   # DRONE_UI_USERNAME: ""
 
 envFile: {}
-  # content: |
+  # content: |-
   #   KEY=VALUE
 
 
