@@ -11,8 +11,8 @@ the official unmaintained helm chart
 This helm chart can be found on [artifacthub.io](https://artifacthub.io/) and
 can be installed via helm.
 
-> :warning: The repository has been changed and causes error messages when
-> interacting with the old repository definition. Please remove the chart repo
+> The repository has been changed and causes error messages when interacting
+> with the old repository definition. Please remove the chart repo
 > `volker.raschek` and replace it with `drone`.
 
 ```bash
