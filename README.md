@@ -12,8 +12,8 @@ This helm chart can be found on [artifacthub.io](https://artifacthub.io/) and
 can be installed via helm.
 
 ```bash
-helm repo add volker.raschek https://charts.cryptic.systems/volker.raschek
-helm install drone volker.raschek/drone-runner
+helm repo add drone https://charts.cryptic.systems/drone
+helm install drone drone/drone-runner
 ```
 
 ## Customization

@@ -73,9 +73,9 @@ platform:
 steps:
 - name: release-helm-chart
   commands:
-  - helm repo add volker.raschek https://charts.cryptic.systems/volker.raschek
+  - helm repo add drone https://charts.cryptic.systems/drone
   - helm package --version ${DRONE_TAG} .
-  - helm cm-push ${DRONE_REPO_NAME%-charts}-${DRONE_TAG}.tgz volker.raschek
+  - helm cm-push ${DRONE_REPO_NAME%-charts}-${DRONE_TAG}.tgz drone
   environment:
     HELM_REPO_PASSWORD:
       from_secret: helm_repo_password
