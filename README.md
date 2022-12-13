@@ -1,15 +1,19 @@
 # drone-charts
 
 [![Build Status](https://drone.cryptic.systems/api/badges/volker.raschek/drone-runner-charts/status.svg)](https://drone.cryptic.systems/volker.raschek/drone-runner-charts)
-[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/volker-raschek)](https://artifacthub.io/packages/search?repo=volker-raschek)
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/drone-ce)](https://artifacthub.io/packages/search?repo=drone-ce)
 
 This is an inofficial helm chart for
 [drone-runner](https://github.com/drone/drone-runner-kube) and should replace
-the official unmainted helm chart
+the official unmaintained helm chart
 [repository](https://github.com/drone/drone-runner-kube).
 
 This helm chart can be found on [artifacthub.io](https://artifacthub.io/) and
 can be installed via helm.
+
+> :warning: The repository has been changed and causes error messages when
+> interacting with the old repository definition. Please remove the chart repo
+> `volker.raschek` and replace it with `drone`.
 
 ```bash
 helm repo add drone https://charts.cryptic.systems/drone
